@@ -1,0 +1,40 @@
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name skillup.example.com www.skillup.example.com;
+    root /var/www/skillup/current/public;
+
+    index index.php index.html;
+
+    ssl_certificate /etc/letsencrypt/live/skillup.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/skillup.example.com/privkey.pem;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name skillup.example.com www.skillup.example.com;
+    return 301 https://$host$request_uri;
+}

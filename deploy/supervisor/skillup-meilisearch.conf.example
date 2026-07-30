@@ -1,0 +1,15 @@
+[program:skillup-meilisearch]
+; Meilisearch powers the course catalogue search (Laravel Scout).
+; Install the binary from https://www.meilisearch.com/docs and update paths below.
+; Bind to localhost (or a private interface) and set a strong master key that
+; matches MEILISEARCH_KEY in the application .env.
+command=/usr/local/bin/meilisearch --http-addr 127.0.0.1:7700 --db-path /var/www/skillup/shared/meili_data --env production --master-key %(ENV_MEILI_MASTER_KEY)s --no-analytics
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/www/skillup/current/storage/logs/meilisearch.log
+stopwaitsecs=30

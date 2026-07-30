@@ -1,0 +1,135 @@
+export const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/courses', label: 'Courses' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/resources', label: 'Resources' },
+    { href: '/events', label: 'Events' },
+    { href: '/community', label: 'Community' },
+    { href: '/corporate', label: 'Corporate' },
+    { href: '/contact', label: 'Contact' },
+];
+
+export const partnerLogos = [
+    { src: '/images/global.png', alt: 'Africa Missions Global' },
+    { src: '/images/rccg.png', alt: 'RCCG' },
+    { src: '/images/incubator.png', alt: 'Dare Adeboye Foundation' },
+    { src: '/images/champions.png', alt: 'Champions network' },
+];
+
+export const tracks = [
+    {
+        slug: 'product-management',
+        title: 'Product Management',
+        category: 'Launch track',
+        level: 'Basic to Advanced',
+        duration: '3 months',
+        price: 'NGN 200,000',
+        image: '/images/Project%20Management.jpg',
+        summary: 'Learn research, roadmapping, agile delivery, stakeholder communication, and practical product leadership.',
+        outcomes: ['Product discovery', 'Agile delivery', 'Portfolio case study'],
+        tools: ['Notion', 'Jira', 'Miro', 'Analytics basics'],
+    },
+    {
+        slug: 'software-development',
+        title: 'Software Development',
+        category: 'Launch track',
+        level: 'Basic to Advanced',
+        duration: '3 months',
+        price: 'NGN 150,000',
+        image: '/images/Web%20Development.jpg',
+        summary: 'Build responsive websites and application foundations with HTML, CSS, JavaScript, and modern tooling.',
+        outcomes: ['Responsive web pages', 'JavaScript projects', 'Deployment basics'],
+        tools: ['HTML', 'CSS', 'JavaScript', 'Git'],
+    },
+    {
+        slug: 'product-design',
+        title: 'Product Design (UI/UX)',
+        category: 'Launch track',
+        level: 'Basic to Advanced',
+        duration: '3 months',
+        price: 'NGN 200,000',
+        image: '/images/Facilitators.jpg',
+        summary: 'Design usable digital products with research, wireframes, prototyping, usability testing, and design systems.',
+        outcomes: ['UX research', 'Clickable prototype', 'Design portfolio'],
+        tools: ['Figma', 'FigJam', 'Design systems'],
+    },
+    {
+        slug: 'virtual-assistance',
+        title: 'Virtual Assistance',
+        category: 'Launch track',
+        level: 'Basic to Intermediate',
+        duration: '8 weeks',
+        price: 'NGN 100,000',
+        image: '/images/Virtual%20Assistant.jpg',
+        summary: 'Develop remote-work operations skills across scheduling, email, documentation, client support, and AI tools.',
+        outcomes: ['Admin workflows', 'Client communication', 'Productivity systems'],
+        tools: ['Google Workspace', 'Notion', 'Canva', 'AI tools'],
+    },
+    {
+        slug: 'data-analysis',
+        title: 'Data Analysis',
+        category: 'Launch track',
+        level: 'Basic to Advanced',
+        duration: '3 months',
+        price: 'NGN 200,000',
+        image: '/images/whygood.jpg',
+        summary: 'Use spreadsheets, SQL, dashboards, and storytelling to solve practical business problems with data.',
+        outcomes: ['Data cleaning', 'Dashboard project', 'Insight presentation'],
+        tools: ['Excel', 'SQL', 'Power BI', 'Python basics'],
+    },
+    {
+        slug: 'digital-marketing',
+        title: 'Digital Marketing',
+        category: 'Phase 2 track',
+        level: 'Coming soon',
+        duration: 'TBA',
+        price: 'Waitlist',
+        image: '/images/techtribe.png',
+        summary: 'A future track for campaign strategy, content, analytics, paid channels, and growth operations.',
+        outcomes: ['Campaign planning', 'Analytics basics', 'Content systems'],
+        tools: ['Meta Ads', 'Google Analytics', 'Email tools'],
+    },
+    {
+        slug: 'cybersecurity',
+        title: 'Cybersecurity',
+        category: 'Phase 2 track',
+        level: 'Coming soon',
+        duration: 'TBA',
+        price: 'Waitlist',
+        image: '/images/studentss.JPG',
+        summary: 'A future track for security foundations, safe operations, risk thinking, and defensive workflows.',
+        outcomes: ['Security foundations', 'Risk awareness', 'Defensive labs'],
+        tools: ['Linux', 'Networking basics', 'Security labs'],
+    },
+];
+
+export const programs = [
+    {
+        title: 'SkillUp Plus',
+        duration: '3 months',
+        image: '/images/skill_up.png',
+        description: 'Structured LMS learning, live sessions, mentorship, and capstone work for serious learners.',
+    },
+    {
+        title: 'Tech Trybe Bootcamp',
+        duration: '6 weeks',
+        image: '/images/techtribe.png',
+        description: 'A practical bootcamp experience for beginners and career switchers who need guided momentum.',
+    },
+];
+
+export const faqs = [
+    {
+        question: 'Will Moodle still be used?',
+        answer: 'Yes. SKILLUP will own products, payments, enrollments, notifications, and support while Moodle remains the course delivery engine.',
+    },
+    {
+        question: 'Can learners pay in installments?',
+        answer: 'The target platform is designed for full payment and installment workflows. Admins will manage pricing and plans from the product catalogue.',
+    },
+    {
+        question: 'Can companies enroll teams?',
+        answer: 'Yes. The corporate flow will support team enquiries, bulk onboarding, invoices, seat allocation, and progress reports.',
+    },
+];

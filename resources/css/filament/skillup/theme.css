@@ -1,0 +1,478 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap');
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config 'tailwind.config.js';
+
+/* ---------------------------------------------------------------------------
+   SkillUp brand theme, shared by the Admin, Corporate, Instructor, and
+   Learner panels. Panel accent colors come from each provider's ->colors().
+--------------------------------------------------------------------------- */
+
+:root {
+    --skillup-navy: 20 24 62;      /* #14183E */
+    --skillup-soft: 239 246 255;   /* #EFF6FF */
+}
+
+/* Auth pages (login, password reset): brand-tinted backdrop, softer card. */
+html:not(.dark) .fi-simple-layout {
+    background-color: rgb(var(--skillup-soft));
+}
+
+.fi-simple-main {
+    border-radius: 1rem;
+    box-shadow: 0 20px 45px -20px rgb(20 24 62 / 0.25);
+}
+
+/* Sidebar: calmer surface, pill-shaped items, roomier brand area. */
+.fi-sidebar-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.fi-sidebar-item-button {
+    border-radius: 0.5rem;
+}
+
+.fi-sidebar-group-label {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+}
+
+/* Topbar: subtle blur like the public navbar. */
+.fi-topbar nav {
+    backdrop-filter: blur(8px);
+}
+
+/* Content surfaces: match the public app's rounded-2xl card language. */
+.fi-section,
+.fi-ta-ctn,
+.fi-wi-stats-overview-stat,
+.fi-fo-tabs,
+.fi-wi-widget > .fi-section {
+    border-radius: 0.75rem;
+}
+
+/* Headings pick up the navy used across the public site. */
+html:not(.dark) .fi-header-heading,
+html:not(.dark) .fi-section-header-heading {
+    color: rgb(var(--skillup-navy));
+}
+
+.fi-header-heading {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+/* Primary buttons: match public CTA weight and radius. */
+.fi-btn {
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+/* Tables: lighter header band, comfortable row height. */
+html:not(.dark) .fi-ta-header-cell {
+    background-color: rgb(248 250 252);
+}
+
+/* ===========================================================================
+   Premium two-column auth (instructor portal).
+   Everything is self-scoped by :has(.skillup-auth-brand) — that element is only
+   injected on the instructor login + password-recovery pages, so no other panel
+   or page is affected.
+   =========================================================================== */
+
+html:not(.dark) .fi-simple-layout:has(.skillup-auth-brand) {
+    background-color: rgb(var(--skillup-soft));
+}
+
+.skillup-auth-brand {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 3rem;
+    color: #fff;
+    background-color: rgb(var(--skillup-navy));
+}
+
+.skillup-auth-brand::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: -6rem;
+    inset-block-end: -6rem;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(closest-side, rgba(234, 88, 12, 0.35), transparent);
+    pointer-events: none;
+}
+
+.skillup-auth-brand__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 24rem;
+    min-height: 100%;
+    margin-inline: auto;
+}
+
+.skillup-auth-brand__mark {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+.skillup-auth-brand__mark span { color: #fb923c; }
+
+.skillup-auth-brand__eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fdba74;
+}
+.skillup-auth-brand__headline {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-weight: 700;
+}
+.skillup-auth-brand__lede {
+    margin-top: 1rem;
+    line-height: 1.65;
+    color: rgba(219, 234, 254, 0.9);
+}
+.skillup-auth-brand__list {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+}
+.skillup-auth-brand__list li {
+    position: relative;
+    padding-inline-start: 1.75rem;
+    color: #e0e7ff;
+}
+.skillup-auth-brand__list li::before {
+    content: '✓';
+    position: absolute;
+    inset-inline-start: 0;
+    color: #fb923c;
+    font-weight: 700;
+}
+.skillup-auth-brand__secure {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(191, 219, 254, 0.85);
+}
+.skillup-auth-brand__secure svg {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+/* Corporate variant — enterprise blue, distinct from the instructor portal. */
+.skillup-auth-brand.skillup-auth-brand--corporate {
+    background-color: #1e3a8a;
+}
+.skillup-auth-brand--corporate::after {
+    background: radial-gradient(closest-side, rgba(59, 130, 246, 0.4), transparent);
+}
+.skillup-auth-brand--corporate .skillup-auth-brand__mark span,
+.skillup-auth-brand--corporate .skillup-auth-brand__list li::before {
+    color: #93c5fd;
+}
+.skillup-auth-brand--corporate .skillup-auth-brand__eyebrow {
+    color: #bfdbfe;
+}
+
+/* Admin variant — dark "secure console" slate with brand-blue accents,
+   distinct from the corporate and instructor portals. */
+.skillup-auth-brand.skillup-auth-brand--admin {
+    background-color: #0f172a;
+}
+.skillup-auth-brand--admin::after {
+    background: radial-gradient(closest-side, rgba(13, 78, 255, 0.35), transparent);
+}
+.skillup-auth-brand--admin .skillup-auth-brand__mark span,
+.skillup-auth-brand--admin .skillup-auth-brand__list li::before {
+    color: #60a5fa;
+}
+.skillup-auth-brand--admin .skillup-auth-brand__eyebrow {
+    color: #93c5fd;
+}
+
+/* Security + support note beneath the auth form. */
+.skillup-auth-note {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(226 232 240);
+    display: grid;
+    gap: 0.5rem;
+    text-align: center;
+}
+.dark .skillup-auth-note { border-color: rgb(255 255 255 / 0.1); }
+.skillup-auth-note__secure {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: rgb(100 116 139);
+}
+.skillup-auth-note__secure svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+    color: rgb(16 185 129);
+}
+.skillup-auth-note__support { font-size: 0.8rem; color: rgb(100 116 139); }
+.skillup-auth-note__support a { font-weight: 600; }
+.skillup-auth-note--instructor .skillup-auth-note__support a { color: #ea580c; }
+.skillup-auth-note--corporate .skillup-auth-note__support a { color: #1e3a8a; }
+.skillup-auth-note--admin .skillup-auth-note__support a { color: #0d4eff; }
+.skillup-auth-note__support a:hover { text-decoration: underline; }
+
+/* Two-column split on large screens; single column (card only) on mobile. */
+@media (min-width: 1024px) {
+    .fi-simple-layout:has(.skillup-auth-brand) {
+        display: grid;
+        grid-template-columns: minmax(0, 30rem) 1fr;
+        align-items: stretch;
+    }
+    .fi-simple-layout:has(.skillup-auth-brand) .skillup-auth-brand {
+        display: flex;
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .fi-simple-layout:has(.skillup-auth-brand) .fi-simple-main-ctn {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
+
+/* Subtle, reduced-motion-respecting entrance. */
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes skillup-auth-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: none; }
+    }
+    .fi-simple-layout:has(.skillup-auth-brand) .fi-simple-main {
+        animation: skillup-auth-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .skillup-auth-brand__inner > * {
+        animation: skillup-auth-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .skillup-auth-brand__inner > *:nth-child(2) { animation-delay: 0.08s; }
+    .skillup-auth-brand__inner > *:nth-child(3) { animation-delay: 0.16s; }
+}
+
+/* ===========================================================================
+   Instructor dashboard widgets (hero, quick actions, needs-attention).
+   Uniquely prefixed so they never affect other panels or pages.
+   =========================================================================== */
+
+/* Hero */
+.skillup-ihero {
+    display: grid;
+    gap: 1.5rem;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    color: #fff;
+    background-color: rgb(var(--skillup-navy));
+}
+@media (min-width: 1024px) {
+    .skillup-ihero { grid-template-columns: 1.4fr 1fr; align-items: center; }
+}
+.skillup-ihero__eyebrow { font-size: 0.8rem; font-weight: 600; color: #fdba74; }
+.skillup-ihero__name { font-size: 1.75rem; font-weight: 700; line-height: 1.15; margin-top: 0.25rem; }
+.skillup-ihero__priorities { margin-top: 0.75rem; color: rgba(219, 234, 254, 0.9); line-height: 1.6; }
+.skillup-ihero__priorities strong { color: #fff; }
+.skillup-ihero__flag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(234, 88, 12, 0.25);
+    padding: 0.15rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fed7aa;
+}
+.skillup-ihero__next {
+    border-radius: 0.6rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 1.1rem 1.25rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.skillup-ihero__next-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #bfdbfe; }
+.skillup-ihero__next-title { margin-top: 0.4rem; font-weight: 700; }
+.skillup-ihero__next-meta { margin-top: 0.15rem; font-size: 0.85rem; color: rgba(219, 234, 254, 0.85); }
+.skillup-ihero__countdown { color: #fdba74; }
+.skillup-ihero__actions { margin-top: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skillup-ihero__join {
+    display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.1rem;
+    border-radius: 0.5rem; background-color: #fff; color: rgb(var(--skillup-navy));
+    font-size: 0.85rem; font-weight: 600;
+}
+.skillup-ihero__join:hover { background-color: #eff6ff; }
+.skillup-ihero__all {
+    display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.1rem;
+    border-radius: 0.5rem; color: #fff; font-size: 0.85rem; font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+.skillup-ihero__all:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+/* Quick actions */
+.skillup-iqa__heading { font-weight: 700; color: rgb(15 23 42); margin-bottom: 0.75rem; }
+.dark .skillup-iqa__heading { color: rgb(241 245 249); }
+.skillup-iqa__grid { display: grid; gap: 1rem; }
+@media (min-width: 640px) { .skillup-iqa__grid { grid-template-columns: repeat(3, 1fr); } }
+.skillup-iqa__card {
+    display: flex; align-items: center; gap: 1rem;
+    border-radius: 0.75rem; border: 1px solid rgb(226 232 240);
+    background-color: #fff; padding: 1.1rem 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dark .skillup-iqa__card { background-color: rgb(24 24 27); border-color: rgb(63 63 70); }
+.skillup-iqa__card:hover { transform: translateY(-2px); border-color: #ea580c; box-shadow: 0 12px 24px -14px rgba(16, 24, 40, 0.25); }
+.skillup-iqa__card:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px; }
+.skillup-iqa__icon { display: flex; height: 2.75rem; width: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 0.6rem; background-color: rgba(234, 88, 12, 0.1); color: #ea580c; }
+.skillup-iqa__body { display: flex; flex-direction: column; min-width: 0; }
+.skillup-iqa__label { font-weight: 600; color: rgb(15 23 42); }
+.dark .skillup-iqa__label { color: rgb(241 245 249); }
+.skillup-iqa__desc { font-size: 0.8rem; color: rgb(100 116 139); }
+.skillup-iqa__arrow { margin-inline-start: auto; color: rgb(148 163 184); flex-shrink: 0; }
+
+/* Needs attention */
+.skillup-ina__heading { display: inline-flex; align-items: center; gap: 0.5rem; color: #ea580c; }
+.skillup-ina__list { display: grid; gap: 0.25rem; }
+.skillup-ina__item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0; border-bottom: 1px solid rgb(241 245 249); }
+.dark .skillup-ina__item { border-color: rgb(39 39 42); }
+.skillup-ina__item:last-child { border-bottom: 0; }
+.skillup-ina__dot { height: 0.5rem; width: 0.5rem; flex-shrink: 0; border-radius: 9999px; }
+.skillup-ina__dot--danger { background-color: rgb(239 68 68); }
+.skillup-ina__dot--warning { background-color: rgb(245 158 11); }
+.skillup-ina__text { display: flex; flex-direction: column; min-width: 0; font-size: 0.875rem; color: rgb(30 41 59); }
+.dark .skillup-ina__text { color: rgb(226 232 240); }
+.skillup-ina__muted { font-size: 0.78rem; color: rgb(100 116 139); }
+.skillup-ina__action { margin-inline-start: auto; flex-shrink: 0; font-size: 0.8rem; font-weight: 600; color: #ea580c; }
+.skillup-ina__action:hover { text-decoration: underline; }
+.skillup-ina__action:focus-visible { outline: 2px solid #ea580c; outline-offset: 2px; border-radius: 0.25rem; }
+
+/* ===========================================================================
+   Corporate dashboard widgets (executive hero, quick actions).
+   Enterprise blue; uniquely prefixed so no other panel is affected.
+   =========================================================================== */
+
+.skillup-chero {
+    display: grid;
+    gap: 1.5rem;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    color: #fff;
+    background-color: #1e3a8a;
+}
+@media (min-width: 1024px) {
+    .skillup-chero { grid-template-columns: 1.3fr 1fr; align-items: center; }
+}
+.skillup-chero__eyebrow { font-size: 0.85rem; font-weight: 600; color: #bfdbfe; }
+.skillup-chero__org { font-size: 1.75rem; font-weight: 700; line-height: 1.15; margin-top: 0.25rem; }
+.skillup-chero__lede { margin-top: 0.5rem; color: rgba(219, 234, 254, 0.9); }
+.skillup-chero__actions { margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.skillup-chero__btn { display: inline-flex; align-items: center; height: 2.5rem; padding: 0 1.1rem; border-radius: 0.5rem; font-size: 0.85rem; font-weight: 600; }
+.skillup-chero__btn--primary { background-color: #fff; color: #1e3a8a; }
+.skillup-chero__btn--primary:hover { background-color: #eff6ff; }
+.skillup-chero__btn--ghost { color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35); }
+.skillup-chero__btn--ghost:hover { background-color: rgba(255, 255, 255, 0.1); }
+.skillup-chero__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.skillup-chero__alerts { border-radius: 0.6rem; background-color: rgba(255, 255, 255, 0.08); padding: 1.1rem 1.25rem; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.skillup-chero__alerts-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #bfdbfe; margin-bottom: 0.6rem; }
+.skillup-chero__alert { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0; font-size: 0.875rem; color: #eff6ff; }
+.skillup-chero__alert + .skillup-chero__alert { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+a.skillup-chero__alert:hover { color: #fff; text-decoration: underline; }
+a.skillup-chero__alert:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 0.25rem; }
+.skillup-chero__alert-dot { height: 0.5rem; width: 0.5rem; flex-shrink: 0; border-radius: 9999px; background-color: #93c5fd; }
+.skillup-chero__alert--danger .skillup-chero__alert-dot { background-color: #f87171; }
+.skillup-chero__alert--warning .skillup-chero__alert-dot { background-color: #fbbf24; }
+.skillup-chero__alert--ok .skillup-chero__alert-dot { background-color: #34d399; }
+
+/* Corporate quick actions */
+.skillup-cqa__heading { font-weight: 700; color: rgb(15 23 42); margin-bottom: 0.75rem; }
+.dark .skillup-cqa__heading { color: rgb(241 245 249); }
+.skillup-cqa__grid { display: grid; gap: 1rem; }
+@media (min-width: 640px) { .skillup-cqa__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .skillup-cqa__grid { grid-template-columns: repeat(5, 1fr); } }
+.skillup-cqa__card {
+    display: flex; align-items: flex-start; gap: 0.75rem; flex-direction: column;
+    border-radius: 0.75rem; border: 1px solid rgb(226 232 240);
+    background-color: #fff; padding: 1.1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dark .skillup-cqa__card { background-color: rgb(24 24 27); border-color: rgb(63 63 70); }
+.skillup-cqa__card:hover { transform: translateY(-2px); border-color: #1e3a8a; box-shadow: 0 12px 24px -14px rgba(16, 24, 40, 0.25); }
+.skillup-cqa__card:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 2px; }
+.skillup-cqa__icon { display: flex; height: 2.5rem; width: 2.5rem; align-items: center; justify-content: center; border-radius: 0.6rem; background-color: rgba(30, 58, 138, 0.1); color: #1e3a8a; }
+.skillup-cqa__body { display: flex; flex-direction: column; min-width: 0; }
+.skillup-cqa__label { font-weight: 600; color: rgb(15 23 42); }
+.dark .skillup-cqa__label { color: rgb(241 245 249); }
+.skillup-cqa__desc { font-size: 0.78rem; color: rgb(100 116 139); }
+.skillup-cqa__arrow { color: rgb(148 163 184); }
+
+/* ===========================================================================
+   Admin console: operations command-centre hero + quick actions.
+   Dark "secure console" surface (ties to the admin auth), brand-blue accents.
+   =========================================================================== */
+
+.skillup-ahero {
+    display: grid;
+    gap: 1.5rem;
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    color: #fff;
+    background-color: #0f172a;
+}
+@media (min-width: 1024px) {
+    .skillup-ahero { grid-template-columns: 1.5fr 1fr; align-items: center; }
+}
+.skillup-ahero__eyebrow { font-size: 0.85rem; font-weight: 600; color: #93c5fd; }
+.skillup-ahero__title { font-size: 1.6rem; font-weight: 700; line-height: 1.15; margin-top: 0.25rem; }
+.skillup-ahero__lede { margin-top: 0.5rem; color: rgba(203, 213, 225, 0.9); line-height: 1.6; }
+.skillup-ahero__kbd {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 1.4rem; height: 1.4rem; padding: 0 0.35rem; margin: 0 0.05rem;
+    border-radius: 0.3rem; background-color: rgba(255, 255, 255, 0.12);
+    font-size: 0.75rem; font-weight: 600; color: #e2e8f0;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.skillup-ahero__security { border-radius: 0.6rem; background-color: rgba(255, 255, 255, 0.06); padding: 1.1rem 1.25rem; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.skillup-ahero__security-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: #93c5fd; margin-bottom: 0.6rem; }
+.skillup-ahero__security-list { display: grid; gap: 0.5rem; }
+.skillup-ahero__security-list li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.875rem; }
+.skillup-ahero__meta-label { color: rgba(203, 213, 225, 0.8); }
+.skillup-ahero__meta-value { font-weight: 600; color: #fff; }
+.skillup-ahero__badge { display: inline-flex; align-items: center; border-radius: 9999px; padding: 0.1rem 0.6rem; font-size: 0.75rem; font-weight: 700; }
+.skillup-ahero__badge--prod { background-color: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+.skillup-ahero__badge--nonprod { background-color: rgba(52, 211, 153, 0.18); color: #6ee7b7; }
+
+/* Admin quick actions */
+.skillup-aqa__heading { font-weight: 700; color: rgb(15 23 42); margin-bottom: 0.75rem; }
+.dark .skillup-aqa__heading { color: rgb(241 245 249); }
+.skillup-aqa__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+@media (min-width: 640px) { .skillup-aqa__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .skillup-aqa__grid { grid-template-columns: repeat(6, 1fr); } }
+.skillup-aqa__card {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 0.6rem;
+    border-radius: 0.6rem; border: 1px solid rgb(226 232 240); background-color: #fff; padding: 0.9rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.dark .skillup-aqa__card { background-color: rgb(24 24 27); border-color: rgb(63 63 70); }
+.skillup-aqa__card:hover { transform: translateY(-2px); border-color: #0d4eff; box-shadow: 0 12px 24px -14px rgba(16, 24, 40, 0.25); }
+.skillup-aqa__card:focus-visible { outline: 2px solid #0d4eff; outline-offset: 2px; }
+.skillup-aqa__icon { display: flex; height: 2.25rem; width: 2.25rem; align-items: center; justify-content: center; border-radius: 0.5rem; background-color: rgba(13, 78, 255, 0.1); color: #0d4eff; }
+.skillup-aqa__label { font-size: 0.85rem; font-weight: 600; color: rgb(15 23 42); }
+.dark .skillup-aqa__label { color: rgb(241 245 249); }
