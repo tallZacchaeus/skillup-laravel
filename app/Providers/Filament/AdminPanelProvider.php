@@ -32,6 +32,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->passwordReset()
+            // Edit-profile page (name, email, password) in the user menu.
+            ->profile()
             // Command palette: Cmd/Ctrl + K opens global search across the
             // resources that opt in via getGloballySearchableAttributes().
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
