@@ -15,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
         \App\Console\Commands\SendInstallmentReminders::class,
     ])
     ->withMiddleware(function (Middleware $middleware): void {
+        // Behind the shared Caddy reverse proxy (Docker network) — trust it so
+        // HTTPS detection, signed URLs, and secure cookies work correctly.
+        $middleware->trustProxies(at: '*');
+
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
