@@ -15,3 +15,4 @@ Schedule::command('skillup:moodle-reconcile')->weeklyOn(1, '02:00')->withoutOver
 Schedule::command('queue:prune-failed --hours=720')->dailyAt('03:00');
 Schedule::command('programs:send-nudges')->hourly()->withoutOverlapping();
 Schedule::command('programs:purge-safeguarding-data')->monthlyOn(1, '04:00')->withoutOverlapping();
+Schedule::command('model:prune', ['--model' => [\App\Models\Platform\PageVisit::class]])->dailyAt('03:30');
